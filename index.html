@@ -205,7 +205,7 @@ footer {
                 <a href="#ServicesandAward" data-scroll>Services and Award</a>
             </li>
             <li>
-                <a href="https://shaibal13.github.io/images/ShaibalSaha.pdf" target="_blank">Download Resume</a>
+                <a href="#" id="downloadResume">Download Resume</a>
             </li>
             <!-- <li>
                 <a href="#skills" data-scroll>Skills</a>
@@ -575,5 +575,9 @@ footer {
                 }
             });
         }).scroll();
+    });
+    $('#downloadResume').on('click', function(event) {
+        event.preventDefault(); // Prevent the default anchor behavior
+        window.open('https://shaibal13.github.io/images/ShaibalSaha.pdf', '_blank');
     });
     </script>
