@@ -47,18 +47,22 @@ header ul li a {
 }
 
 header ul li a.active {
-    color: #319d77; /* Active section color */
+    color: #3498db; /* Active section color */
 }
 
 header ul li a:hover {
     color: #007bff; /* Hover color */
 }
-
-    #publications .heading{
+#freetime {
+    padding: 50px 15px 20px 15px;
+    border-bottom: 1px solid #dcd9d9;
+    text-align: center;
+}
+    #publications .heading, #books .heading{
         text-align: center !important;
         display: block !important;
     }
-    #publications {
+    #publications, #books {
     padding: 50px 15px;
     border-bottom: 1px solid #dcd9d9;
     }
@@ -178,6 +182,7 @@ footer {
 .interactive-list li:hover .award-icon {
     color: #ffeb3b; /* Change icon color on hover */
 }
+
 </style>
 <body>
     <div id="mobile-menu-open" class="shadow-large">
@@ -193,6 +198,9 @@ footer {
                 <a href="#about" data-scroll>About</a>
             </li>
             <li>
+                <a href="#books" data-scroll>Books</a>
+            </li>
+            <li>
                 <a href="#publications" data-scroll>Publication</a>
             </li>
             <li>
@@ -202,11 +210,15 @@ footer {
                 <a href="#education" data-scroll>Education</a>
             </li>
             <li>
-                <a href="#ServicesandAward" data-scroll>Services and Award</a>
+                <a href="#ServicesandAward" >Services and Award</a>
             </li>
             <li>
                 <a href="images/Shaibal_resume.pdf" id="downloadResume" target="_blank">Download Resume</a>
             </li>
+             <li>
+                <a href="#freetime" data-scroll>My Free Time</a>
+            </li>
+            
             <!-- <li>
                 <a href="#skills" data-scroll>Skills</a>
             </li>
@@ -229,7 +241,7 @@ footer {
                 
                     <a href="https://github.com/shaibal13" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
                 
-                    <a href="https://scholar.google.com/citations?hl=en&user=B1OTj-sAAAAJ" target="_blank"><i class="ai ai-google-scholar-square" aria-hidden="true"></i></a>
+                    <a href="https://scholar.google.com/citations?hl=en&user=B1OTj-sAAAAJ" target="_blank"><i class="ai ai-google-scholar-square" aria-hidden="true"></i></a> 
                 
                     <!-- <a href="https://scholar.google.com/citations?hl=en&user=B1OTj-sAAAAJ" target="_blank"><i class="ai ai-google-scholar-square" aria-hidden="true"></i></a> -->
 
@@ -265,59 +277,146 @@ footer {
                 </div>
                 <div class="col-md-8">
                     <p>
-                        Shaibal is a PhD student in the Computer Science and Engineering Department at Oakland University. He is currently a graduate research assistant at the Edge Intelligent System Lab under the supervision of <a href="https://lori930.github.io/">Dr. Lanyu Xu</a>. Prior to beginning his PhD, Shaibal gained four years of experience as a software developer at <a href="https://codearistos.net/">Code Aristos</a>, Bangladesh. He holds a Bachelor's in Computer Science and Engineering from <a href="https://www.northsouth.edu/">North South University</a>, Bangladesh.                    </p>
-                <p> <strong>Research Interest:</strong> Edge Computing, Deep learning, Model optimization, Hardware-Software co-design, Connected Health, Autonomous Vechicles</p>
+                        Shaibal is a PhD candidate in the Computer Science and Engineering Department at Oakland University. He is currently a graduate research assistant at the Edge Intelligent System Lab under the supervision of <a href="https://lori930.github.io/">Dr. Lanyu Xu</a>. Prior to beginning his PhD, Shaibal gained four years of experience as a software developer at <a href="https://codearistos.net/">Code Aristos</a>, Bangladesh. He holds a Bachelor's in Computer Science and Engineering from <a href="https://www.northsouth.edu/">North South University</a>, Bangladesh.                    </p>
+                <p> <strong>Research Interest:</strong> Edge Computing, Deep learning, Model optimization, LLM systems, Hardware-Software co-design, Connected Health, Autonomous Vechicles</p>
                
                        </div>
             </div>
         </div>
+
+        <h2 class="heading" style="margin-top: 50px;">News</h2>
+        <div class="container">
+            <div class="row" style="display: flex; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); padding: 32px; align-items: flex-start;">
+                <ul class="news-list">
+                    <li>
+                        <span style="color: #3498db; font-weight: bold;">June 2025:</span>
+                        I presented my work titled EfficientQuant at the T4V-CVPR Workshop 2025 at Nashville, TN.
+                    </li>
+                    <li>
+                        <span style="color: #3498db; font-weight: bold;">June 2025:</span>
+                        I contributed one book chapter (chapter 4) in the book <b>Edge Computing: Systems and Applications</b> and it is now available from Wiley-IEEE Press and Amazon.
+                    </li>
+                    <li >
+                        <span style="color: #3498db; font-weight: bold;">May 2025:</span>
+                        Our smart vehicle team—collaborated work between CSE and ECE— earned 3rd place in the Self-Drive Challenge at the 32nd Intelligent Ground Vehicle Competition (IGVC) in Self driving car category. Hurray for my team!!!
+                    </li>
+                    <li >
+                        <span style="color: #3498db; font-weight: bold;">May 2025:</span>
+                        Our survey paper on Vision Transformers on the Edge is accepted at Neurocomputing (Q1 journal).
+                    </li>
+                    <li >
+                        <span style="color: #3498db; font-weight: bold;">April 2025:</span>
+                        I successfully passed my PhD qualifying exam on April 18, 2025.
+                    </li>
+                    <li >
+                        <span style="color: #3498db; font-weight: bold;">September 2024:</span>
+                        I attended NSF workshop on Algorithm-Hardware Co-design for Medical Applications at Pittsburgh, PA.
+                    </li>
+                    <li >
+                        <span style="color: #3498db; font-weight: bold;">May 2024:</span>
+                        Our work on autonmmous driving is accepted at IEEE International Conference on Mobility: Operations, Services, and Technologies (MOST) 2024.
+                    </li>
+                    <li>
+                        <span style="color: #3498db; font-weight: bold;">January 2024:</span>
+                        I got Provost Graduate Student Research Award grant, Oakland University for my research on vision transformer on the edge.
+                    </li>
+                    <li>
+                        <span style="color: #3498db; font-weight: bold;">June 2023:</span>
+                        I attended SEC 2023 conference at Delaware,DE and also recived NSF Student Travel Award. Additionally, I worked as a conference da
+                    </li>
+                    <li>
+                        <span style="color: #3498db; font-weight: bold;">June 2023:</span>
+                        I attended CHASE 2023 conference at Orlando, FL and also recived NSF Student Travel Award.
+                    </li>
+                </ul>
+            </div>
+                </div>
     </div>
-    <!-- End #about -->
   <!-- Enhanced Publications Section -->
 <div id="publications" class="background-alt">
     <h2 class="heading">Publications</h2>
     <div class="container">
         <div class="row">
             <!-- Publication Entry 1 -->
-              <div class="publication shadow-large" style="margin-bottom: 30px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <h3 style="margin-bottom: 10px; font-weight: 700; color: #333;">Vision Transformers on the Edge: A Comprehensive Survey of Model Compression and Acceleration Strategies
+            <div class="publication shadow-large" style="margin-bottom: 13px; padding: 1px 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <h3 style="margin-bottom: 6px; font-weight: 700; color: #333;">EfficientQuant: An Efficient Post-Training Quantization for CNN-Transformer Hybrid Models on Edge Devices
 </h3>
                 <p style="margin: 0; font-size: 16px; color: #555;">
                  <b>Shaibal Saha</b>, and Lanyu Xu
                 </p>
-                <p style="margin: 5px 0 15px; font-size: 16px; color: #777;">
-                    <strong>Journal (Q1):</strong> Neurocomputing (Elsevier), 2025
+                <p style="margin: -8px 0 15px; font-size: 16px; color: #777;">
+                    <i><strong>Conference:</strong> 4th Workshop on Transformers for Vision (T4V) at CVPR, 2025. </i> <a href="https://arxiv.org/abs/2506.11093" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Paper</a> | 
+                        <a href="images/EfficientQuant.pdf" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Poster</a>
                 </p>
-                <a href="https://arxiv.org/abs/2503.02891" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Read Full Paper</a>
+
             </div>
-            <div class="publication shadow-large" style="margin-bottom: 30px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <h3 style="margin-bottom: 10px; font-weight: 700; color: #333;">The Architectural Implications of Multi-modal Detection Models for Autonomous Driving Systems</h3>
+              <div class="publication shadow-large" style="margin-bottom: 13px; padding: 1px 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <h3 style="margin-bottom: 6px; font-weight: 700; color: #333;">Vision Transformers on the Edge: A Comprehensive Survey of Model Compression and Acceleration Strategies
+</h3>
+                <p style="margin: 0; font-size: 16px; color: #555;">
+                 <b>Shaibal Saha</b>, and Lanyu Xu
+                </p>
+                <p style="margin: -8px 0 15px; font-size: 16px; color: #777;">
+                    <i> <strong>Journal:</strong> Neurocomputing (Elsevier), 2025. </i>  <a href="https://arxiv.org/abs/2503.02891" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Paper</a>
+                </p>
+               
+            </div>
+            <div class="publication shadow-large" style="margin-bottom: 13px; padding: 1px 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <h3 style="margin-bottom: 6px; font-weight: 700; color: #333;">The Architectural Implications of Multi-modal Detection Models for Autonomous Driving Systems</h3>
                 <p style="margin: 0; font-size: 16px; color: #555;">
                     Yunge Li, <b>Shaibal Saha</b>, and Lanyu Xu
                 </p>
-                <p style="margin: 5px 0 15px; font-size: 16px; color: #777;">
-                    <strong>Conference:</strong> IEEE International Conference on Mobility: Operations, Services, and Technologies, 2024
+                <p style="margin: -8px 0 15px; font-size: 16px; color: #777;">
+                    <i><strong>Conference:</strong> IEEE International Conference on Mobility: Operations, Services, and Technologies, 2024. </i>  <a href="https://ieeexplore.ieee.org/document/10607110" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Paper</a> |
+                    <a href="images/Most24_poster.pdf" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Poster</a>
                 </p>
-                <a href="https://ieeexplore.ieee.org/document/10607110" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Read Full Paper</a>
+               
             </div>
             <!-- End .publication -->
 
-            <div class="publication shadow-large" style="margin-bottom: 30px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <h3 style="margin-bottom: 10px; font-weight: 700; color: #333;">Performance Analysis of Supervised Machine Learning Approaches for Bengali Text Categorization</h3>
+            <div class="publication shadow-large" style="margin-bottom: 13px; padding: 1px 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <h3 style="margin-bottom: 6px; font-weight: 700; color: #333;">Performance Analysis of Supervised Machine Learning Approaches for Bengali Text Categorization</h3>
                 <p style="margin: 0; font-size: 16px; color: #555;">
                     Ronald Tudu, <b>Shaibal Saha</b>, Prasun Nandy Pritam, and Rajesh Palit
                 </p>
-                <p style="margin: 5px 0 15px; font-size: 16px; color: #777;">
-                    <strong>Conference:</strong> 2018 5th IEEE Asia-Pacific World Congress on Computer Science and Engineering (APWC on CSE)
+                <p style="margin: -8px 0 15px; font-size: 16px; color: #777;">
+                    <i><strong>Conference:</strong> 5th IEEE Asia-Pacific World Congress on Computer Science and Engineering (APWC on CSE), 2018. </i> <a href="https://ieeexplore.ieee.org/abstract/document/8853717" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Paper</a>
                 </p>
-                <a href="https://ieeexplore.ieee.org/abstract/document/8853717" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Read Full Paper</a>
+                
             </div>
             <!-- End .publication -->
         </div>
     </div>
 </div>
 <!-- End #publications -->
+<!-- Books Section -->
+<div id="books" class="background-alt">
+    <h2 class="heading" style="text-align: center !important;">Book</h2>
+    <div class="container">
+      <div class="row" style="display: flex; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); padding: 32px; align-items: flex-start;">
+        <!-- Book Cover -->
+        <div class="book-cover" style="flex: 0 0 240px; margin-right: 40px;">
+          <img src="images/cover_page.png" alt="Edge Computing: Systems and Applications" style="width: 240px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.10);">
+        </div>
+        <!-- Book Info -->  
+        <div class="book-info" style="flex: 1;">
+          <h3 style="margin-top:0; margin-bottom: 12px; font-size: 2em; font-weight: 700;">Edge Computing: Systems and Applications</h3>
+          <p style="margin: 0 0 8px 0;"><b>Published Date:</b> June, 2025</p>
+          <p style="margin: 0 0 8px 0;"><b>Publisher:</b> Wiley-IEEE Press</p>
+          <p style="margin: 0 0 8px 0;"><b>ISBN:</b> 978-1-394-28584-6</p>
+          <p style="margin: 0 0 8px 0;"><b>Length:</b> 288 pages</p>
+          <p style="margin: 0 0 8px 0;"><b>My Role:</b> Responsible for writing and reviewing Chapter 4: Toward Edge Intelligence</p>
+          <p style="margin: 0 0 8px 0;"><b>Authors (Chapter 4):</b> <b>Shaibal Saha</b>, Qiren Wang, Lichen Xia, and Yongtao Yao</p>
+          <p style="margin: 0 0 8px 0;"><b>About this book:</b> Edge Computing offers a thorough but accessible overview of this cutting-edge technology. Beginning with the fundamentals of edge computing, including its history, key characteristics, and use cases, it describes the architecture and infrastructure of edge computing and the hardware that enables it. The book also explores edge intelligence, where artificial intelligence is integrated into edge computing to enable smaller, faster, and more autonomous decision-making. The result is an essential tool for any researcher looking to understand this increasingly ubiquitous method for processing data.</p>
 
+          <a href="https://onlinelibrary.wiley.com/doi/book/10.1002/9781394285860" target="_blank" style="color: #007bff; font-weight: bold; text-decoration: none;">Book Link</a>
+        | <a href="https://onlinelibrary.wiley.com/doi/10.1002/9781394285860.ch4" target="_blank" style="color: #007bff; font-weight: bold; text-decoration: none;">Chapter 4</a>
+        | <a href="https://edgecomputingbook.org/" target="_blank" style="color: #007bff; font-weight: bold; text-decoration: none;">Book Website</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End #books -->
 <!-- End #publications -->
 
     <!-- End #publications -->
@@ -326,6 +425,11 @@ footer {
         <div id="experience-timeline">
             <div data-date="September 2022 – Current">
                 <h3>Oakland University</h3>
+                <h4>Graduate Teaching Assistant</h4>
+                <ul>
+                    <li>CSI 3620: Data Structures and Algorithms (Summer '25)</li>
+                    <li>CSI 3480: Security & Privacy in Computing (Summer '25)</li>
+                </ul>
                 <h4>Graduate Research Assistant</h4>
                 <!-- <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla commodo malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta quam laoreet placerat.
@@ -340,13 +444,13 @@ footer {
                 </p> -->
             </div>
 
-            <div data-date="April 2019 – September 2019">
+            <!-- <div data-date="April 2019 – September 2019">
                 <h3>North South University</h3>
                 <h4>Undergraduate Teaching Assistant</h4>
                 <!-- <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla commodo malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta quam laoreet placerat.
                 </p> -->
-            </div>
+            <!-- </div>  -->
         </div>
     </div>
     <!-- End #experience -->
@@ -484,6 +588,28 @@ footer {
     </div>
         <!-- End Awards Subsection -->
     </div>
+    <!--  <div id="freetime" class="background-alt" style="text-align: center !important; background-color: #fff !important; padding: 50px 15px;">
+        <h2 class="heading">My Free Time</h2>
+
+      <div class="card">
+      </div>
+  </div> -->
+  <div id="freetime" class="background-alt">
+  <h2 class="heading" style="text-align: center !important;">My Free Time</h2>
+  <div style="max-width: 900px; margin: 0 auto;">
+    <p>
+      I love to travel. I want to meet new people, know their culture, and explore new places. Besides that, I love to explore different food culture.
+    </p>
+    <div style="width: 100%; height: 480px; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+      <!-- Replace the src below with your own Google My Maps embed link -->
+      <iframe src="https://www.google.com/maps/d/embed?mid=1Orq0iP1g1wAKTOh-sKnb68uCDlxqzAQ&ehbc=2E312F" width="100%" height="480"></iframe>
+      <!-- <iframe src="https://www.google.com/maps/d/u/0/"
+              width="100%" height="480" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
+    </div>
+  </div>
+ 
+  
+</div>
     <!-- End #projects -->
 
     <!-- <div id="skills">
@@ -538,7 +664,7 @@ footer {
             <div class="row">
                 <div class="col-sm-5 copyright">
                     <p>
-                        Copyright &copy; <span id="current-year"><2024></span>Shaibal Saha
+                        Copyright &copy; <span id="current-year"><2025></span>Shaibal Saha
                     </p>
                 </div>
                 <div class="col-sm-2 top">
