@@ -17,6 +17,9 @@
 </head>
 <style>
     /* Sticky Navigation Bar */
+        /* .shadow{
+            font-size: 12px;
+        } */
 header {
     position: fixed;
     top: 0;
@@ -156,13 +159,14 @@ footer {
 
 .interactive-list li {
     padding: 15px 10px;
-    font-size: 1.1em;
+    font-size: 15px;
     color: #333; /* Dark grey text color */
     border-bottom: 1px solid #e0e0e0; /* Subtle line between items */
     display: flex; /* Align items horizontally */
     align-items: center; /* Center-align items vertically */
     transition: background-color 0.3s, transform 0.3s; /* Smooth background and transform change */
     cursor: pointer; /* Pointer cursor on hover */
+    text-align: left;
 }
 
 .interactive-list li:hover {
@@ -182,6 +186,118 @@ footer {
 .interactive-list li:hover .award-icon {
     color: #ffeb3b; /* Change icon color on hover */
 }
+
+
+/* ===== Mobile fixes (global) ===== */
+html { scroll-behavior: smooth; }
+body { overflow-x: hidden; } /* prevents sideways scroll from wide elements */
+.container, .row { max-width: 100%; }
+
+/* Prevent long links/words from creating a skinny column */
+p, li, a, div { overflow-wrap: anywhere; word-break: normal; }
+
+/* ===== About section ===== */
+@media (max-width: 768px) {
+  #about { padding: 50px 12px; }
+
+  .about-content{
+    flex-direction: column;   /* stack image + text */
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .profile-image-container{
+    padding-right: 0;
+    margin-bottom: 0;
+  }
+
+  .profile-image img{
+    max-width: 150px;
+  }
+
+  /* make the text use full width */
+  #about .col-md-8, #about .col-md-4{
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+}
+
+/* ===== Internship banner (your "open to opportunities") ===== */
+@media (max-width: 768px) {
+  .opportunity-bar{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 14px;
+  }
+  .opportunity-bar .opportunity-cta{
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* ===== Book section (image + text) ===== */
+@media (max-width: 768px) {
+  #books .row{
+    flex-direction: column !important;
+    padding: 18px !important;
+  }
+
+  #books .book-cover{
+    flex: 0 0 auto !important;
+    margin-right: 0 !important;
+    margin-bottom: 14px;
+    width: 100%;
+    text-align: center;
+  }
+
+  #books .book-cover img{
+    width: 180px !important;  /* smaller cover */
+    max-width: 80%;
+  }
+
+  #books .book-info h3{
+    font-size: 1.35em !important;
+    line-height: 1.25;
+  }
+}
+
+/* ===== Experience bullets ribbons (avoid weird overlap on very small screens) ===== */
+@media (max-width: 480px) {
+  .ribbon-bullets li{
+    padding-left: 78px; /* slightly less */
+  }
+  .ribbon-bullets li::before{
+    left: 10px;
+  }
+  .ribbon-bullets li::after{
+    left: 22px;
+  }
+}
+
+/* ===== Services & Award card margins (your .card has huge side margins) ===== */
+@media (max-width: 768px) {
+  .card{
+    margin: 16px 12px 0 12px !important; /* was 90px left/right */
+    padding: 16px 16px !important;
+  }
+  .subsection-heading{
+    text-align: center; /* optional: looks nicer on mobile */
+  }
+}
+
+/* ===== News box: reduce padding on mobile ===== */
+@media (max-width: 768px) {
+  #about .row[style*="box-shadow"]{
+    padding: 18px !important;
+  }
+  .news-list li{
+    padding: 10px 6px;
+  }
+}
+
+
 
 </style>
 <body>
@@ -248,6 +364,7 @@ footer {
                
                 <!-- Add more social links as needed -->
             </div>
+            
             <!-- <a href="#" class="btn-rounded-white">Download Resume</a> -->
         </div>
 
@@ -278,16 +395,75 @@ footer {
                 <div class="col-md-8">
                     <p>
                         Shaibal is a PhD candidate in the Computer Science and Engineering Department at Oakland University. He is currently a graduate research assistant at the Edge Intelligent System Lab under the supervision of <a href="https://lori930.github.io/">Dr. Lanyu Xu</a>. Prior to beginning his PhD, Shaibal gained four years of experience as a software developer at <a href="https://codearistos.net/">Code Aristos</a>, Bangladesh. He holds a Bachelor's in Computer Science and Engineering from <a href="https://www.northsouth.edu/">North South University</a>, Bangladesh.                    </p>
-                <p> <strong>Research Interest:</strong> Edge Computing, Deep learning, Model optimization, LLM systems, Hardware-Software co-design, Connected Health, Autonomous Vechicles</p>
+                <p> <strong>Research Interest:</strong> Efficient AI, Edge Computing, Deep learning, LLM systems, Connected Health, Autonomous Vechicles</p>
                
                        </div>
             </div>
         </div>
+        <style>
+            /* Simple opportunity banner (after About) */
+            .opportunity-banner {
+  max-width: 980px;
+  margin: 28px auto 0 auto;
+  padding: 14px 18px;
+  background: #EEF7E3;
+  border: 1px solid #EEF7E3;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  color: #1f2937;
+}
 
+.opportunity-banner .badge {
+  background: #5597C9;
+  color: #fff;
+  font-weight: 800;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.opportunity-text {
+  /* line-height: 1.6; */
+  text-align: left;
+}
+
+.op-link {
+  font-weight: 700;
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.op-link:hover {
+  text-decoration: underline;
+}
+#servicesandaward li{
+    font-size: 18px;
+    text-align: left;
+}
+        </style>
+        <div class="container">
+            <div class="opportunity-banner">
+                <!-- <span class="badge">OPEN TO OPPORTUNITIES</span> -->
+                <span class="opportunity-text">
+                  I am actively seeking a <b>Summer 2026 internship or Co-op</b> in
+                  <b>Efficient AI</b>, <b>Machine Learning</b>, and <b>LLM Systems</b>.
+                  Please
+                  <a href="images/Shaibal_resume.pdf" target="_blank" class="op-link">download my CV</a>
+                  and feel free to reach out via email at
+                  <a href="mailto:shaibalsaha@oakland.edu" class="op-link">shaibalsaha@oakland.edu</a>
+                  to discuss potential collaboration or roles.
+                </span>
+              </div>
+              
+          </div>
         <h2 class="heading" style="margin-top: 50px;">News</h2>
         <div class="container">
             <div class="row" style="display: flex; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); padding: 32px; align-items: flex-start;">
-                <ul class="news-list">
+                <ul class="news-list" style="text-align: left;">
                     <li>
                         <span style="color: #3498db; font-weight: bold;">June 2025:</span>
                         I presented my work titled EfficientQuant at the T4V-CVPR Workshop 2025 at Nashville, TN.
@@ -339,8 +515,8 @@ footer {
         <div class="row">
             <!-- Publication Entry 1 -->
             <div class="publication shadow-large" style="margin-bottom: 13px; padding: 1px 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <h3 style="margin-bottom: 6px; font-weight: 700; color: #333;">EfficientQuant: An Efficient Post-Training Quantization for CNN-Transformer Hybrid Models on Edge Devices
-</h3>
+                <h4 style="margin-bottom: 6px; font-weight: 700; color: #333;">EfficientQuant: An Efficient Post-Training Quantization for CNN-Transformer Hybrid Models on Edge Devices
+</h4>
                 <p style="margin: 0; font-size: 16px; color: #555;">
                  <b>Shaibal Saha</b>, and Lanyu Xu
                 </p>
@@ -351,8 +527,8 @@ footer {
 
             </div>
               <div class="publication shadow-large" style="margin-bottom: 13px; padding: 1px 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <h3 style="margin-bottom: 6px; font-weight: 700; color: #333;">Vision Transformers on the Edge: A Comprehensive Survey of Model Compression and Acceleration Strategies
-</h3>
+                <h4 style="margin-bottom: 6px; font-weight: 700; color: #333;">Vision Transformers on the Edge: A Comprehensive Survey of Model Compression and Acceleration Strategies
+</h4>
                 <p style="margin: 0; font-size: 16px; color: #555;">
                  <b>Shaibal Saha</b>, and Lanyu Xu
                 </p>
@@ -362,7 +538,7 @@ footer {
                
             </div>
             <div class="publication shadow-large" style="margin-bottom: 13px; padding: 1px 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <h3 style="margin-bottom: 6px; font-weight: 700; color: #333;">The Architectural Implications of Multi-modal Detection Models for Autonomous Driving Systems</h3>
+                <h4 style="margin-bottom: 6px; font-weight: 700; color: #333;">The Architectural Implications of Multi-modal Detection Models for Autonomous Driving Systems</h4>
                 <p style="margin: 0; font-size: 16px; color: #555;">
                     Yunge Li, <b>Shaibal Saha</b>, and Lanyu Xu
                 </p>
@@ -375,7 +551,7 @@ footer {
             <!-- End .publication -->
 
             <div class="publication shadow-large" style="margin-bottom: 13px; padding: 1px 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <h3 style="margin-bottom: 6px; font-weight: 700; color: #333;">Performance Analysis of Supervised Machine Learning Approaches for Bengali Text Categorization</h3>
+                <h4 style="margin-bottom: 6px; font-weight: 700; color: #333;">Performance Analysis of Supervised Machine Learning Approaches for Bengali Text Categorization</h4>
                 <p style="margin: 0; font-size: 16px; color: #555;">
                     Ronald Tudu, <b>Shaibal Saha</b>, Prasun Nandy Pritam, and Rajesh Palit
                 </p>
@@ -400,7 +576,7 @@ footer {
         </div>
         <!-- Book Info -->  
         <div class="book-info" style="flex: 1;">
-          <h3 style="margin-top:0; margin-bottom: 12px; font-size: 2em; font-weight: 700;">Edge Computing: Systems and Applications</h3>
+          <h4 style="margin-top:0; margin-bottom: 12px; font-size: 2em; font-weight: 700;">Edge Computing: Systems and Applications</h4>
           <p style="margin: 0 0 8px 0;"><b>Published Date:</b> June, 2025</p>
           <p style="margin: 0 0 8px 0;"><b>Publisher:</b> Wiley-IEEE Press</p>
           <p style="margin: 0 0 8px 0;"><b>ISBN:</b> 978-1-394-28584-6</p>
@@ -418,84 +594,641 @@ footer {
   </div>
   <!-- End #books -->
 <!-- End #publications -->
+<style>
+/* ===== Experience: Academic Portfolio Style ===== */
+.exp-wrap {
+  padding: 60px 15px;
+}
 
-    <!-- End #publications -->
-    <div id="experience" class="background-alt background_color">
-        <h2 class="heading">Experience</h2>
-        <div id="experience-timeline">
-            <div data-date="September 2022 – Current">
-                <h3>Oakland University</h3>
-                <h4>Graduate Teaching Assistant</h4>
-                <ul>
-                    <li>CSI 2310: Data Structures (Fall '25)</li>
-                    <li>CSI 3660: System Administration (Fall '25)</li>
-                    <li>CSI 3620: Data Structures and Algorithms (Summer '25)</li>
-                    <li>CSI 3480: Security & Privacy in Computing (Summer '25)</li>
+.exp-heading {
+  text-align: center !important;
+  margin-bottom: 30px !important;
+}
 
-                </ul>
-                <h4>Graduate Research Assistant</h4>
-                <!-- <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla commodo malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta quam laoreet placerat.
-                </p> -->
-            </div>
+/* block title */
+.exp-block {
+  max-width: 980px;
+  margin: 0 auto 34px auto;
+}
 
-            <div data-date="January 2019 – June 2022">
-                <h3>Code Aristos</h3>
-                <h4>Software Developer</h4>
-                <!-- <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla commodo malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta quam laoreet placerat.
-                </p> -->
-            </div>
+.exp-block-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 20px 0 16px 0;
+}
 
-            <!-- <div data-date="April 2019 – September 2019">
-                <h3>North South University</h3>
-                <h4>Undergraduate Teaching Assistant</h4>
-                <!-- <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla commodo malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta quam laoreet placerat.
-                </p> -->
-            <!-- </div>  -->
-        </div>
+.exp-kicker {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #5597C9;
+}
+
+.exp-line {
+  height: 1px;
+  flex: 1;
+  background: #e6e6e6;
+}
+
+/* card */
+.exp-card {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  padding: 22px 26px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+.exp-main,
+.exp-bullets,
+.exp-callout {
+  max-width: 760px;   /* prevents center-heavy look */
+}
+.exp-card-top {
+  display: grid;
+  grid-template-columns: 1fr 170px;
+  gap: 16px;
+  align-items: start;
+}
+
+.exp-role {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+  text-align: left;
+}
+
+.exp-org {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #555;
+  text-align: left;
+}
+.exp-role {
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+.exp-org {
+  font-size: 13.5px;
+  color: #6b7280;
+  font-style: italic;
+}
+.exp-meta {
+  font-size: 12.5px;
+  color: #6b7280;
+}
+/* chips */
+.exp-chips {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f3f7fb;
+  border: 1px solid #e3edf7;
+  color: #1f4b73;
+  font-weight: 700;
+}
+.chip {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 9px;
+  background: #f6f8fb;
+  border-color: #e5ebf3;
+  color: #3a5f8a;
+}
+
+/* meta right */
+.exp-meta {
+  text-align: right;
+}
+
+.exp-date {
+  font-size: 13px;
+  font-weight: 800;
+  color: #333;
+}
+
+.exp-loc {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #777;
+}
+
+/* callout row */
+.exp-callout {
+  margin-top: 14px;
+  background: #fafafa;
+  border: 1px solid #ededed;
+  border-left: 4px solid #5597C9;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 17px;
+  color: #333;
+  text-align: left;
+}
+.exp-callout {
+  margin-top: 18px;
+  padding: 12px 14px;
+  background: #fbfbfc;
+  border-left-width: 3px;
+  /* font-size: 13.5px; */
+  line-height: 1.6;
+}
+
+
+.exp-callout-title {
+  font-weight: 900;
+  color: #111;
+  margin-right: 8px;
+}
+
+/* bullets */
+/* .exp-bullets {
+  margin: 14px 0 0 0;
+  padding-left: 18px;
+}
+
+.exp-bullets li {
+  margin: 8px 0;
+  line-height: 1.55;
+  color: #222;
+}
+.exp-bullets {
+  margin-top: 18px;
+  text-align: left;
+}
+
+.exp-bullets li {
+  margin: 10px 0;
+  line-height: 1.65;
+  color: #374151;
+} */
+ /* Numbered badge bullets (01,02,03...) */
+.exp-bullets {
+  list-style: none;
+  padding-left: 0;
+  margin: 18px 0 0 0;
+  counter-reset: expItem;
+}
+
+.exp-bullets li {
+  position: relative;
+  padding: 10px 12px 10px 60px; /* space for badge */
+  margin: 10px 0;
+  line-height: 1.65;
+  color: #374151;
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.exp-bullets li::before {
+  counter-increment: expItem;
+  content: counter(expItem, decimal-leading-zero);
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 28px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 12px;
+  color: #fff;
+  background: #5597C9;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.10);
+}
+
+/* optional: soften bold prefixes inside bullets */
+.exp-bullets b {
+  font-weight: 900;
+  color: #111827;
+}
+
+/* ===== Folded Ribbon Numbered Bullets ===== */
+.ribbon-bullets {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: ribbon;
+  font-size: 16px;
+}
+
+.ribbon-bullets li {
+  position: relative;
+  padding: 14px 14px 14px 88px; /* room for ribbon */
+  margin: 14px 0;
+  line-height: 1.65;
+  color: #374151;
+  text-align: left;
+}
+
+/* FRONT ribbon */
+.ribbon-bullets li::before {
+  counter-increment: ribbon;
+  content: counter(ribbon, decimal-leading-zero);
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-25deg);
+  width: 40px;
+  height: 24px;
+  background: #5597C9;
+  color: #fff;
+  font-weight: 900;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  z-index: 2;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+}
+
+/* BACK folded flap */
+.ribbon-bullets li::after {
+  content: "";
+  position: absolute;
+  left: 26px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-25deg);
+  width: 37px;
+  height: 24px;
+  background: #3c4e75; /* darker shade */
+  border-radius: 8px;
+  z-index: 1;
+  filter: brightness(0.85);
+}
+
+/* optional: slight hover lift */
+.ribbon-bullets li:hover::before {
+  transform: translateY(-55%) rotate(-25deg);
+}
+
+/* keyword emphasis */
+.ribbon-bullets b {
+  font-weight: 900;
+  color: #111827;
+}
+
+
+/* teaching courses grid */
+.course-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.course-card {
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  padding: 12px 12px;
+  background: #fff;
+}
+
+.course-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.course-title {
+  font-size: 16px;
+  font-weight: 900;
+  color: #111;
+  text-align: left;
+}
+
+.course-meta {
+  font-size: 13px;
+  color: #777;
+  white-space: nowrap;
+}
+.course-grid {
+  margin-top: 18px;
+  gap: 16px;
+}
+
+.course-card {
+  padding: 14px 16px;
+}
+
+/* .course-title {
+  font-size: 13.5px;
+} */
+
+.course-bullets li {
+  margin: 8px 0;
+  line-height: 1.55;
+}
+
+.course-bullets {
+  margin: 10px 0 0 0;
+  padding-left: 18px;
+}
+
+.course-bullets li {
+  margin: 6px 0;
+  line-height: 1.5;
+  color: #333;
+  text-align: left;
+  font-size: 15px;
+}
+
+/* responsive */
+@media (max-width: 820px) {
+  .exp-card-top {
+    grid-template-columns: 1fr;
+  }
+  .exp-meta {
+    text-align: left;
+  }
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+    </style>
+    
+    <div id="experience" class="background-alt">
+  <h2 class="heading" style="text-align: center !important;">Experience</h2>
+
+  <!-- ===== Research ===== -->
+  <div class="exp-block">
+    <div class="exp-block-title">
+      <span class="exp-kicker">Research</span>
+      <span class="exp-line"></span>
     </div>
-    <!-- End #experience -->
 
-    <div id="education" class="background-alt">
-        <h2 class="heading">Education</h2>
-        <div class="education-block">
-            <h3>Oakland University</h3>
-            <span class="education-date">Sept 2022 - Current</span>
-            <h4>PhD in Computer Science and Informatics</h4>
-            <!-- <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla commodo malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta quam laoreet placerat.
-            </p> -->
-        </div>
-         <div class="education-block">
-            <h3>Oakland University</h3>
-            <span class="education-date">Sept 2022 - Dec 2024</span>
-            <h4>Masters of Science in Computer Science</h4>
-            <!-- <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla commodo malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta quam laoreet placerat.
-            </p> -->
-        </div>
-        <!-- End .education-block -->
+    <article class="exp-card">
+      <div class="exp-card-top">
+        <div class="exp-main">
+          <h4 class="exp-role">Research Assistant</h4>
+          <div class="exp-org">Edge Intelligent System Lab, Oakland University</div>
 
-        <div class="education-block">
-            <h3>North South University</h3>
-            <span class="education-date">Jan 2014 - Sept 2018</span>
-            <h4>Bachelor of Science in Computer Science And Engineering</h4>
-            <!-- <ul>
-                <li>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </li>
-                <li>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </li>
-                <li>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </li>
-            </ul> -->
+          <div class="exp-chips">
+            <span class="chip">Efficient AI</span>
+            <span class="chip">Model Optimization</span>
+            <span class="chip">LLM Systems</span>
+            <span class="chip">Quantization</span>
+          </div>
         </div>
-        <!-- End .education-block -->
+
+        <div class="exp-meta">
+          <div class="exp-date">Sep 2022 — Present</div>
+          <div class="exp-loc">Rochester, MI</div>
+        </div>
+      </div>
+
+      <div class="exp-callout">
+        <span class="exp-callout-title">Focus</span>
+        Efficient deep learning and LLM-based systems for edge and domain-specific deployments, with emphasis on quantization, fine-tuning, and retrieval-augmented generation under resource constraints.
+
+      </div>
+
+      <!-- <ul class="exp-bullets ribbon-bullets">
+        <li><b>Acceleration:</b> Designed and evaluated CNN–Transformer acceleration (PTQ, latency–accuracy trade-offs).</li>
+        <li><b>Reproducibility:</b> Built benchmarking, profiling, and ablation pipelines for publication-quality results.</li>
+        <li><b>Research output:</b> Contributed to peer-reviewed papers and technical presentations.</li>
+      </ul> -->
+      <ul class="exp-bullets ribbon-bullets">
+        <li>
+            <b>Efficient Deep Learning:</b>
+            Designs and analyzes post-training quantization strategies for CNN–Transformer hybrid and Vision Transformer models, with emphasis on deployment efficiency and latency–accuracy trade-offs on edge devices.
+          </li>
+          
+          <li>
+            <b>LLM Systems:</b>
+            Designs and evaluates retrieval-augmented generation pipelines using quantized embedding and generation models, leveraging efficient serving frameworks (e.g., vLLM-style execution) and optimized attention mechanisms to study inference cost and latency trade-offs for domain-specific applications.
+          </li>
+          
+          <li>
+            <b>Inference Optimization:</b>
+            Implements and evaluates inference-level optimizations for deep learning and LLM-based systems, including runtime selection, attention optimization, and deployment-aware execution strategies.
+          </li>
+          
+          <li>
+            <b>Survey & Technical Synthesis:</b>
+            Conducts large-scale literature synthesis on Vision Transformers and edge acceleration, integrating insights from model compression, system-level optimization, and hardware-aware design.
+          </li>
+          
+          <li>
+            <b>Evaluation & Reproducibility:</b>
+            Develops reproducible profiling, and ablation pipelines to support deployment-aware analysis across models, datasets, and hardware platforms.
+          </li>
+          
+      </ul>
+      
+    </article>
+  </div>
+
+  <!-- ===== Teaching ===== -->
+  <div class="exp-block">
+    <div class="exp-block-title">
+      <span class="exp-kicker">Teaching</span>
+      <span class="exp-line"></span>
     </div>
+
+    <article class="exp-card">
+      <div class="exp-card-top">
+        <div class="exp-main">
+          <h4 class="exp-role">Teaching Assistant</h4>
+          <div class="exp-org">Department of Computer Science & Engineering, Oakland University</div>
+
+          <div class="exp-chips">
+            <span class="chip">Labs</span>
+            <span class="chip">Office Hours</span>
+            <span class="chip">Grading</span>
+            <span class="chip">Student Support</span>
+          </div>
+        </div>
+
+        <div class="exp-meta">
+          <div class="exp-date">May 2025 — Present</div>
+          <div class="exp-loc">Rochester, MI</div>
+        </div>
+      </div>
+
+      <div class="course-grid">
+        <div class="course-card">
+            <div class="course-top">
+              <div class="course-title">CSI 3620 — Data Structures & Algorithms</div>
+              <div class="course-meta">Summer 2025 · 27 students</div>
+            </div>
+            <ul class="course-bullets">
+              <li>Assisted instruction in algorithm design and complexity analysis.</li>
+              <li>Provided detailed feedback on assignments and exams with weekly office hours with students.</li>
+            </ul>
+          </div>
+          <div class="course-card">
+            <div class="course-top">
+              <div class="course-title">CSI 3480 — Security & Privacy in Computing</div>
+              <div class="course-meta">Summer 2025 · 39 students</div>
+            </div>
+            <ul class="course-bullets">
+              <li>Led Labs to explain tools for information security and privacy .</li>
+              <li>Comprehend the risks and countermeasures that enhance database, IoT, and cloud security and privacy.</li>
+              <li>Grade assignments, exams, quizzes, and projects.</li>
+            </ul>
+          </div>
+        <div class="course-card">
+          <div class="course-top">
+            <div class="course-title">CSI 2310 — Data Structures</div>
+            <div class="course-meta">Fall 2025 · 50 students <br>
+           Winter 2026 · 29 students</div>
+          </div>
+          <ul class="course-bullets">
+            <li>Led labs + office hours on algorithmic problem solving and debugging.</li>
+            <li>Conduct weekly theory classes to explain the concepts and algorithms.</li>
+            <li>Supported grading and solutions with consistent rubrics (assignments, quizzes, exams).</li>
+          </ul>
+        </div>
+
+        <div class="course-card">
+          <div class="course-top">
+            <div class="course-title">CSI 3660 — System Administration</div>
+            <div class="course-meta">Fall 2025 · 57 students</div>
+          </div>
+          <ul class="course-bullets">
+            <li>Supported Linux labs (scripting, configuration, system management).</li>
+            <li>Helped with OS-level troubleshooting, projects and concepts.</li>
+            <li>Grade assignments, quizzes, and exams with another TA.</li>
+          </ul>
+        </div>
+        <div class="course-card">
+            <div class="course-top">
+              <div class="course-title">CSI 5240 — Cloud Computing</div>
+              <div class="course-meta">Winter 2026 · 37 students</div>
+            </div>
+            <ul class="course-bullets">
+              <li>Helped students in research based projects for whole semester with group meetings in every week.</li>
+              <li>Grading, presentation, quizzes.</li>
+              <li>Helped with AWS setup and  how to use it for the projects and research.</li>
+            </ul>
+          </div>
+
+
+
+   
+      </div>
+    </article>
+  </div>
+
+  <!-- ===== Industry ===== -->
+  <div class="exp-block">
+    <div class="exp-block-title">
+      <span class="exp-kicker">Industry</span>
+      <span class="exp-line"></span>
+    </div>
+
+    <article class="exp-card">
+      <div class="exp-card-top">
+        <div class="exp-main">
+          <h4 class="exp-role">Software Developer</h4>
+          <div class="exp-org">Code Aristos</div>
+
+          <div class="exp-chips">
+            <span class="chip">Web Apps</span>
+            <span class="chip">Production</span>
+            <span class="chip">Bug Fix</span>
+            <span class="chip">Full-stack</span>
+          </div>
+        </div>
+
+        <div class="exp-meta">
+          <div class="exp-date">Jan 2019 — Jun 2022</div>
+          <div class="exp-loc">Bangladesh</div>
+        </div>
+      </div>
+
+      <div class="exp-callout">
+        <span class="exp-callout-title">Role</span>
+        Full-stack development of production healthcare applications, integrating backend services, frontend interfaces, and machine learning–based data processing with an emphasis on maintainability and reliability.
+    </div>
+      <!-- <ul class="exp-bullets ribbon-bullets">
+        <li>Developed and maintained production applications; improved performance and fixed critical bugs.</li>
+        <li>Worked with cross-functional teams to deliver features and milestones.</li>
+        <li>Contributed to code reviews and documentation for maintainability.</li>
+      </ul> -->
+      <ul class="exp-bullets ribbon-bullets">
+        <li>
+          <b>Full-Stack System Development:</b>
+          Designed and implemented core components of a production healthcare application, contributing to backend services, frontend interfaces, and database-driven workflows.
+        </li>
+        <li>
+          <b>Applied Machine Learning:</b>
+          Integrated machine learning–based data analysis modules into the hospital application to support automated processing and data-driven decision workflows.
+        </li>
+        <li>
+          <b>System Reliability & Performance:</b>
+          Improved application performance and stability through systematic debugging, refactoring, and optimization of backend services.
+        </li>
+        <li>
+          <b>Product & Business Impact:</b>
+          Contributed technical solutions that supported product adoption and measurable business growth following deployment.
+        </li>
+        <li>
+          <b>Engineering Practices:</b>
+          Participated in code reviews, documentation, and cross-functional collaboration to ensure maintainability and scalable development.
+        </li>
+      </ul>
+      
+    </article>
+  </div>
+</div>
+<div id="education" class="background-alt">
+    <h2 class="heading">Education</h2>
+    <div class="education-block">
+        <h3>Oakland University</h3>
+        <span class="education-date">Sept 2022 - Current</span>
+        <h4>PhD in Computer Science and Informatics</h4>
+        <!-- <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla commodo malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta quam laoreet placerat.
+        </p> -->
+    </div>
+     <div class="education-block">
+        <h3>Oakland University</h3>
+        <span class="education-date">Sept 2022 - Dec 2024</span>
+        <h4>Masters of Science in Computer Science</h4>
+        <!-- <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla commodo malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta quam laoreet placerat.
+        </p> -->
+    </div>
+    <!-- End .education-block -->
+
+    <div class="education-block">
+        <h3>North South University</h3>
+        <span class="education-date">Jan 2014 - Sept 2018</span>
+        <h4>Bachelor of Science in Computer Science And Engineering</h4>
+        <!-- <ul>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </li>
+            <li>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </li>
+        </ul> -->
+    </div>
+    <!-- End .education-block -->
+</div>
+
     <!-- End #education -->
 <style>
     .card{
@@ -509,14 +1242,19 @@ footer {
     }
     .subsection-heading{
         text-align: left;
+        font-size: 18px;
     }
 </style>
     <div id="ServicesandAward" class="background-alt" style="text-align: center !important; background-color: #fff !important; padding: 50px 15px;">
         <h2 class="heading">Services And Award</h2>
       <div class="card">
         <div id="services" class="subsection">
-            <h3 class="subsection-heading">Professional Services</h3>
+            <h4 class="subsection-heading">Professional Services</h4>
             <ul class="interactive-list">
+                <li>
+                    <i class="fa fa-edit service-icon" aria-hidden="true"></i>
+                    Reviewer of Elsevier Neurocomputing (2026-).
+                </li>
 				 <li>
                     <i class="fa fa-edit service-icon" aria-hidden="true"></i>
                     Reviewer of Elsevier Expert Systems With Applications (2025-).
@@ -545,7 +1283,7 @@ footer {
     
         <!-- Awards Subsection -->
         <div id="awards" class="subsection">
-            <h3 class="subsection-heading">Awards & Achievements</h3>
+            <h4 class="subsection-heading">Awards & Achievements</h4>
             <ul class="interactive-list">
                 <li>
                     <i class="fa fa-plane award-icon" aria-hidden="true"></i>
@@ -579,7 +1317,7 @@ footer {
         </div>
 
         <div id="awards" class="subsection">
-            <h3 class="subsection-heading">Community Services</h3>
+            <h4 class="subsection-heading">Community Services</h4>
             <ul class="interactive-list">
                 <li>
                     <i class="fa fa-users award-icon" aria-hidden="true"></i>
@@ -675,7 +1413,7 @@ footer {
             <div class="row">
                 <div class="col-sm-5 copyright">
                     <p>
-                        Copyright &copy; <span id="current-year"><2025></span>Shaibal Saha
+                        Copyright &copy; <span id="current-year"><2026></span>Shaibal Saha
                     </p>
                 </div>
                 <div class="col-sm-2 top">
