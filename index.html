@@ -16,45 +16,131 @@ d<!DOCTYPE html>
 
 </head>
 <style>
-    /* Sticky Navigation Bar */
-        /* .shadow{
-            font-size: 12px;
-        } */
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: #333; /* Background color for nav */
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Sticky Navigation Bar — desktop / tablet landscape */
+@media (min-width: 769px) {
+    header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #333;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    header ul li {
+        margin: 0 15px;
+        display: inline-block;
+    }
+
+    header ul li a {
+        text-decoration: none;
+        padding: 15px 10px;
+        display: block;
+        transition: color 0.3s;
+        white-space: nowrap;
+    }
+
+    header ul li a.active {
+        color: #3498db;
+    }
+
+    header ul li a:hover {
+        color: #007bff;
+    }
 }
 
-header ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
+/* Mobile hamburger overlay — do not use the desktop flex bar */
+@media (max-width: 768px) {
+    #mobile-menu-open {
+        display: block;
+        z-index: 1100;
+        top: 12px;
+        right: 12px;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        line-height: 44px;
+        text-align: center;
+    }
 
-header ul li {
-    margin: 0 15px;
-}
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        background: #333;
+        z-index: 1200;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
 
-header ul li a {
-    text-decoration: none;
-    
-    padding: 15px 10px;
-    display: block;
-    transition: color 0.3s;
-}
+    header.active {
+        display: block;
+    }
 
-header ul li a.active {
-    color: #3498db; /* Active section color */
-}
+    #mobile-menu-close {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        width: 100%;
+        padding: 16px 18px;
+        box-sizing: border-box;
+    }
 
-header ul li a:hover {
-    color: #007bff; /* Hover color */
+    header ul,
+    header ul#menu {
+        display: block !important;
+        flex-direction: column;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+        text-align: left;
+    }
+
+    header ul li,
+    header ul#menu li {
+        display: block !important;
+        margin: 0;
+        width: 100%;
+        float: none;
+    }
+
+    header ul li a,
+    header ul#menu li a {
+        display: block;
+        padding: 15px 22px;
+        text-decoration: none;
+        white-space: normal;
+        overflow-wrap: normal;
+        word-break: normal;
+        transition: color 0.3s;
+    }
+
+    header ul li a.active {
+        color: #3498db;
+    }
+
+    header ul li a:hover {
+        color: #007bff;
+    }
 }
 #freetime {
     padding: 50px 15px 20px 15px;
@@ -195,6 +281,10 @@ body { overflow-x: hidden; } /* prevents sideways scroll from wide elements */
 
 /* Prevent long links/words from creating a skinny column */
 p, li, a, div { overflow-wrap: anywhere; word-break: normal; }
+header, header *, #mobile-menu-open, #mobile-menu-close {
+    overflow-wrap: normal;
+    word-break: normal;
+}
 
 /* ===== About section ===== */
 @media (max-width: 768px) {
@@ -329,7 +419,7 @@ p, li, a, div { overflow-wrap: anywhere; word-break: normal; }
                 <a href="#ServicesandAward" >Services and Award</a>
             </li>
             <li>
-                <a href="images/Shaibal_Saha_CV_19Feb.pdf" id="downloadResume" target="_blank">Download Resume</a>
+                <a href="images/CV_07.pdf" id="downloadResume" class="no-scroll" target="_blank">Download Resume</a>
             </li>
              <li>
                 <a href="#freetime" data-scroll>My Free Time</a>
@@ -452,7 +542,7 @@ p, li, a, div { overflow-wrap: anywhere; word-break: normal; }
                   I am actively seeking a <b> internship or Co-op</b> in
                   <b>Efficient AI</b>, <b>Machine Learning</b>, and <b>LLM Systems</b>.
                   Please
-                  <a href="images/Shaibal_Saha_CV_19Feb.pdf" target="_blank" class="op-link">download my CV</a>
+                  <a href="images/CV_07.pdf" target="_blank" class="op-link">download my CV</a>
                   and feel free to reach out via email at
                   <a href="mailto:shaibalsaha@oakland.edu" class="op-link">shaibalsaha@oakland.edu</a>
                   to discuss potential collaboration or roles.
@@ -518,26 +608,39 @@ p, li, a, div { overflow-wrap: anywhere; word-break: normal; }
     <div class="container">
         <div class="row">
             <!-- Publication Entry 1 -->
-			            <div class="publication shadow-large" style="margin-bottom: 13px; padding: 1px 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <h4 style="margin-bottom: 6px; font-weight: 700; color: #333;"> (Accepted) KD-Judge: A Knowledge-Driven Automated Judge Framework for Functional Fitness Movements on Edge Devices
+			            <!-- <div class="publication shadow-large" style="margin-bottom: 13px; padding: 1px 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <h4 style="margin-bottom: 6px; font-weight: 700; color: #333;"> KD-Judge: A Knowledge-Driven Automated Judge Framework for Functional Fitness Movements on Edge Devices
                 <p style="margin: 0; font-size: 16px; color: #555;">
-                 <b> Shaibal Saha </b>, Fan Li, Yunge Li, Arun Iyengar, Lucas Alves, and Lanyu Xu
+                <b>Shaibal Saha</b>, Fan Li, Yunge Li, Arun Iyengar, Lucas Alves, and Lanyu Xu
                 </p>
                 <p style="margin: 2px 0 15px; font-size: 16px; color: #777;">
-                    <i><strong>Conference:</strong> 11th IEEE/ACM Conference on Connected Health: Applications, Systems, and Engineering Technologies,2026 (CHASE) </i> 
+                    <i><strong>Conference:</strong> 11th IEEE/ACM Conference on Connected Health: Applications, Systems, and Engineering Technologies,2026 (CHASE) </i>. <a href="https://arxiv.org/abs/2604.19834" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Paper</a>
 					<!-- <a href="https://arxiv.org/abs/2506.11093" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Paper</a> | 
                         <a href="images/EfficientQuant.pdf" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Poster</a> -->
                 </p>
 
-            </div>
+            </div> -->
+            <div class="publication shadow-large" style="margin-bottom: 13px; padding: 1px 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+              <h4 style="margin-bottom: 6px; font-weight: 700; color: #333;"> KD-Judge: A Knowledge-Driven Automated Judge Framework for Functional Fitness Movements on Edge Devices
+</h4>
+              <p style="margin: 0; font-size: 16px; color: #555;">
+               <b>Shaibal Saha</b>, Fan Li, Yunge Li, Arun Iyengar, Lucas Alves, and Lanyu Xu
+              </p>
+              <p style="margin: 2px 0 15px; font-size: 16px; color: #777;">
+                  <i><strong>Conference:</strong> 11th IEEE/ACM Conference on Connected Health: Applications, Systems, and Engineering Technologies,2026 (CHASE). </i>  <a href="https://arxiv.org/abs/2604.19834" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Paper</a> 
+        <!-- <a href="https://arxiv.org/abs/2506.11093" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Paper</a> | 
+                      <a href="images/EfficientQuant.pdf" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Poster</a> -->
+              </p>
+
+          </div>
 			            <div class="publication shadow-large" style="margin-bottom: 13px; padding: 1px 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <h4 style="margin-bottom: 6px; font-weight: 700; color: #333;"> (Accepted) LightAD: A Lightweight Vision-Based Autonomous Driving System
+                <h4 style="margin-bottom: 6px; font-weight: 700; color: #333;"> LightAD: A Lightweight Vision-Based Autonomous Driving System
 </h4>
                 <p style="margin: 0; font-size: 16px; color: #555;">
                  Yunge Li, Zhaodong Zhou, <b>Shaibal Saha</b>, Ali Irshayyid, Keer Chen, Lanyu Xu, and Jun Chen
                 </p>
                 <p style="margin: 2px 0 15px; font-size: 16px; color: #777;">
-                    <i><strong>Conference:</strong> 4th IEEE International Conference on Mobility: Operations, Services, and Technologies, 2026. </i> 
+                    <i><strong>Conference:</strong> 4th IEEE International Conference on Mobility: Operations, Services, and Technologies, 2026. </i>  <a href="https://ieeexplore.ieee.org/abstract/document/11527461" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Paper</a> 
 					<!-- <a href="https://arxiv.org/abs/2506.11093" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Paper</a> | 
                         <a href="images/EfficientQuant.pdf" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold; display: inline-block; margin-top: 10px;">Poster</a> -->
                 </p>
@@ -1025,8 +1128,10 @@ p, li, a, div { overflow-wrap: anywhere; word-break: normal; }
 
       <div class="exp-callout">
         <span class="exp-callout-title">Focus</span>
-        Efficient deep learning and LLM-based systems for edge and domain-specific deployments, with emphasis on quantization, fine-tuning, and retrieval-augmented generation under resource constraints.
-
+        <!-- Efficient deep learning and LLM-based systems for edge and domain-specific deployments, with emphasis on quantization, fine-tuning, and retrieval-augmented generation under resource constraints. -->
+        Efficient AI and LLM systems for resource-constrained environments, focusing on
+        model compression, adaptive retrieval, and low-latency inference for edge and
+        domain-specific applications.
       </div>
 
       <!-- <ul class="exp-bullets ribbon-bullets">
@@ -1035,7 +1140,7 @@ p, li, a, div { overflow-wrap: anywhere; word-break: normal; }
         <li><b>Research output:</b> Contributed to peer-reviewed papers and technical presentations.</li>
       </ul> -->
       <ul class="exp-bullets ribbon-bullets">
-        <li>
+        <!-- <li>
             <b>Efficient Deep Learning:</b>
             Designs and analyzes post-training quantization strategies for CNN–Transformer hybrid and Vision Transformer models, with emphasis on deployment efficiency and latency–accuracy trade-offs on edge devices.
           </li>
@@ -1043,12 +1148,31 @@ p, li, a, div { overflow-wrap: anywhere; word-break: normal; }
           <li>
             <b>LLM Systems:</b>
             Designs and evaluates retrieval-augmented generation pipelines using quantized embedding and generation models, leveraging efficient serving frameworks (e.g., vLLM-style execution) and optimized attention mechanisms to study inference cost and latency trade-offs for domain-specific applications.
-          </li>
-          
+          </li> -->
           <li>
+            <b>Efficient Deep Learning:</b>
+            Develops and evaluates post-training quantization and model-compression
+            strategies for CNN–Transformer hybrid and Vision Transformer models,
+            emphasizing latency–accuracy trade-offs and deployment on edge devices.
+          </li>
+        
+          <li>
+            <b>Efficient LLM and RAG Systems:</b>
+            Investigates adaptive retrieval, evidence sufficiency, dynamic chunk
+            selection, and efficient LLM serving to reduce retrieval and generation
+            costs while maintaining answer quality in domain-specific applications.
+          </li>
+        
+          <li>
+            <b>Edge AI Applications:</b>
+            Builds efficient AI systems for connected health and autonomous driving,
+            including knowledge-driven activity assessment and lightweight,
+            real-time perception systems.
+          </li>
+          <!-- <li>
             <b>Inference Optimization:</b>
             Implements and evaluates inference-level optimizations for deep learning and LLM-based systems, including runtime selection, attention optimization, and deployment-aware execution strategies.
-          </li>
+          </li> -->
           <!-- 
           <li>
             <b>Survey & Technical Synthesis:</b>
@@ -1176,10 +1300,142 @@ p, li, a, div { overflow-wrap: anywhere; word-break: normal; }
 
    
       </div>
-    </article>
-  </div>
+    <div style="border-top: 1px solid #e2e8f0; margin-top: 2% !important;">
+        <!-- ===== Mentored Students ===== -->
+      <div class="exp-card-top" style="display: block !important;">
+        <div class="exp-main" style="margin-top: 1% !important;">
+          <h4 class="exp-role">Undergraduate Students</h4>
+           <div class="exp-org">Research Experience for Undergraduates</div>
+<!--
+          <div class="exp-chips">
+            <span class="chip">Labs</span>
+            <span class="chip">Office Hours</span>
+            <span class="chip">Grading</span>
+            <span class="chip">Student Support</span>
+          </div> -->
+        </div>
+        <div class="exp-meta" style="margin-top: -5% !important;">
+          <div class="exp-date">Summer 2026</div>
+          <!-- <div class="exp-loc">Rochester, MI</div> -->
+        </div>
+</div>
+        <div class="mentoring-section">
+          <!-- <div class="mentoring-header">
+            <span class="mentoring-title">Undergraduate Students</span>
+            <span class="mentoring-term">REU · Summer 2026</span>
+          </div> -->
+        
+          <div class="mentoring-list">
+            <div class="mentee">
+              <span class="mentee-name">Bidisha Dalai</span>
+              <span class="mentee-university">
+                University of Texas at San Antonio
+              </span>
+            </div>
+        
+            <div class="mentee">
+              <span class="mentee-name">Pierce O’Keefe</span>
+              <span class="mentee-university">
+                California State University, Sacramento
+              </span>
+            </div>
+        
+            <div class="mentee">
+              <span class="mentee-name">Aliyah Montes De Oca</span>
+              <span class="mentee-university">
+                Loyola University Chicago
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- ===== Industry ===== -->
+    </article>
+  
+  </div>
+<style>
+.mentoring-section {
+  /* margin-top: 1.5rem; */
+  padding-top: 1.25rem;
+  /* border-top: 1px solid #e2e8f0; */
+}
+
+.mentoring-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.mentoring-title {
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.mentoring-term {
+  color: #64748b;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.mentoring-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 3% !important;
+}
+
+.mentee {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.25rem 1.25rem;
+  border-right: 1px solid #e2e8f0;
+}
+
+.mentee:first-child {
+  padding-left: 0;
+}
+
+.mentee:last-child {
+  padding-right: 0;
+  border-right: none;
+}
+
+.mentee-name {
+  color: #0f172a;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.mentee-university {
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+@media (max-width: 700px) {
+  .mentoring-list {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .mentee,
+  .mentee:first-child,
+  .mentee:last-child {
+    padding: 0 0 0.85rem;
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .mentee:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+</style>
+
+<!-- ===== Industry ===== -->
   <div class="exp-block">
     <div class="exp-block-title">
       <span class="exp-kicker">Industry</span>
@@ -1224,7 +1480,7 @@ p, li, a, div { overflow-wrap: anywhere; word-break: normal; }
           <b>Applied Machine Learning:</b>
           Integrated machine learning–based data analysis modules into the hospital application to support automated processing and data-driven decision workflows.
         </li>
-        <li>
+        <!-- <li>
           <b>System Reliability & Performance:</b>
           Improved application performance and stability through systematic debugging, refactoring, and optimization of backend services.
         </li>
@@ -1235,7 +1491,7 @@ p, li, a, div { overflow-wrap: anywhere; word-break: normal; }
         <li>
           <b>Engineering Practices:</b>
           Participated in code reviews, documentation, and cross-functional collaboration to ensure maintainability and scalable development.
-        </li>
+        </li> -->
       </ul>
       
     </article>
@@ -1335,9 +1591,24 @@ p, li, a, div { overflow-wrap: anywhere; word-break: normal; }
             </ul>
         </div> -->
         <!-- End Services Subsection -->
+         
 		      <div id="ServicesandAward" class="background-alt" style="text-align: center !important; background-color: #fff !important; padding: 50px 15px;">
         <h2 class="heading">Services And Award</h2>
       <div class="card">
+             <!-- Awards Subsection -->
+     <div id="awards" class="subsection">
+      <h4 class="subsection-heading">Grants</h4>
+      <ul class="interactive-list">
+        <li>
+          <i class="fa fa-graduation-cap award-icon" aria-hidden="true"></i>
+          Oakland University Provost Graduate Student Research Award - Winter 2026.
+      </li>       
+          <li>
+              <i class="fa fa-graduation-cap award-icon" aria-hidden="true"></i>
+              Oakland University Provost Graduate Student Research Award - Spring 2023.
+          </li>
+      </ul>
+  </div>
         <div id="services" class="subsection">
             <h4 class="subsection-heading">Professional Services</h4>
             <ul class="interactive-list">
@@ -1375,11 +1646,12 @@ p, li, a, div { overflow-wrap: anywhere; word-break: normal; }
             </ul>
         </div>
         <!-- End Services Subsection -->
-    
+
         <!-- Awards Subsection -->
         <div id="awards" class="subsection">
-            <h4 class="subsection-heading">Awards & Achievements</h4>
+            <h4 class="subsection-heading">Awards</h4>
             <ul class="interactive-list">
+            
                 <li>
                     <i class="fa fa-plane award-icon" aria-hidden="true"></i>
                     NSF Student Travel Award for attending IEEE MOST 2024.
@@ -1396,10 +1668,7 @@ p, li, a, div { overflow-wrap: anywhere; word-break: normal; }
                     <i class="fa fa-plane award-icon" aria-hidden="true"></i>
                     NSF Student Travel Award for attending IEEE/ACM CHASE 2023.
                 </li>
-                <li>
-                    <i class="fa fa-graduation-cap award-icon" aria-hidden="true"></i>
-                    Oakland University Provost Graduate Student Research Award - Spring 2023.
-                </li>
+            
                 <li>
                     <i class="fa fa-certificate award-icon" aria-hidden="true"></i>
                     Selected for North South University Scholarship at the undergraduate for maintaining a good result (2016-2018).
