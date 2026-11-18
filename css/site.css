@@ -530,3 +530,9 @@ body.reading .journal { display: none; }
 /* Recognition: two balanced cards */
 .honors-grid { align-items: stretch; }
 .honors-grid h3.sub { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
+
+/* Travel board */
+.board-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.board-photo { margin: 0; }
+.board-photo img { width: 100%; border-radius: 18px; box-shadow: var(--shadow-lg); }
+@media (max-width: 800px) { .board-grid { grid-template-columns: 1fr; gap: 24px; } }
