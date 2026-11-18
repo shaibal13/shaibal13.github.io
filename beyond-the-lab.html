@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beyond the Lab | Shaibal Saha</title>
+  <meta name="description" content="Stories and photos from Shaibal Saha's travels across the United States, India and Bangladesh.">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/site.css?v=20261118o">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Shaibal Saha</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#trips">Travel</a></li>
+      <li><a href="#bookshelf">Books</a></li>
+      <li><a class="pill" href="images/Shaibal_Saha_CV.pdf" target="_blank" rel="noopener"><i class="fa fa-file-text-o"></i>&nbsp; CV</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><i class="fa fa-moon-o"></i></button>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><i class="fa fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ JOURNAL (list view) ============ -->
+<main class="journal">
+  <section class="t-hero">
+    <div class="wrap t-hero-grid">
+      <div>
+        <span class="eyebrow">Beyond the lab</span>
+        <h1 class="t-title"><span>From the <em>Bay of Bengal</em></span> <span>to the Pacific.</span></h1>
+        <p>I grew up in Bangladesh, and outside the lab I love to explore new places with a new book in hand. I love meeting new people, learning their cultures, and exploring places I've only read about. Here are the journeys that stayed with me, and the books that sent me looking for them.</p>
+      </div>
+      <figure class="t-hero-photo"><img src="images/travel/me-canyon-sunset.jpg" alt="Shaibal at sunset in Utah's canyon country"></figure>
+    </div>
+  </section>
+
+  <section id="trips" style="padding-top:24px">
+    <div class="wrap">
+      <span class="eyebrow">Travel</span>
+      <h2 class="section-title">Stories from the road</h2>
+      <div class="filters" role="group" aria-label="Filter trips" id="trip-filters"></div>
+      <div class="trip-grid" id="trip-grid"></div>
+    </div>
+  </section>
+
+  <section id="bookshelf">
+    <div class="wrap">
+      <span class="eyebrow">Books</span>
+      <h2 class="section-title">Books that shaped me</h2>
+      <p class="section-lede">History and suspense have been my favourite companions since childhood, from Feluda and Byomkesh to the long story of the Indo-Pacific. As an AI researcher, I also love reading about the AI revolution and where it is taking us.</p>
+      <div class="filters" role="group" aria-label="Filter books" id="book-filters"></div>
+      <div class="shelf" id="shelf"></div>
+    </div>
+  </section>
+
+  <section id="map">
+    <div class="wrap">
+      <span class="eyebrow">Map</span>
+      <h2 class="section-title">Everywhere I've been</h2>
+      <p class="section-lede">My pinned places on Google My Maps.</p>
+      <div class="map-embed">
+        <iframe src="https://www.google.com/maps/d/embed?mid=1Orq0iP1g1wAKTOh-sKnb68uCDlxqzAQ&ehbc=2E312F" title="Map of places Shaibal has visited" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ STORY (read-more view) ============ -->
+<article class="story" id="story" aria-live="polite"></article>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="year">2026</span> Shaibal Saha · <a href="index.html">Back to portfolio</a></span>
+    <div class="socials">
+      <a href="mailto:shaibalsaha@oakland.edu" aria-label="Email"><i class="fa fa-envelope"></i></a>
+      <a href="https://www.linkedin.com/in/shaibal-saha/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+      <a href="https://github.com/shaibal13" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa fa-github"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=20261118o"></script>
+<script src="js/travel-data.js?v=20261118o"></script>
+<script src="js/books-data.js?v=20261118o"></script>
+<script>
+(function () {
+  var trips = window.TRIPS || [];
+  var grid = document.getElementById('trip-grid');
+  var story = document.getElementById('story');
+  var filterBox = document.getElementById('trip-filters');
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function mapsLink(name) {
+    return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(name);
+  }
+  // Real photo if given, otherwise a coloured placeholder labelled with the place.
+  function media(trip, photo, label) {
+    if (photo && photo.src) {
+      return '<img src="' + esc(photo.src) + '" alt="' + esc(photo.caption || label) + '" loading="lazy">';
+    }
+    return '<div class="ph" style="--g1:' + trip.colors[0] + ';--g2:' + trip.colors[1] + '"><div>' +
+      '<i class="fa fa-camera"></i><b>' + esc(label) + '</b><small>Photo coming soon</small></div></div>';
+  }
+
+  var countries = {};
+  trips.forEach(function (t) { countries[t.region] = 1; });
+
+  // ---- filters ----
+  var regions = ['All'].concat(Object.keys(countries));
+  filterBox.innerHTML = regions.map(function (r, i) {
+    return '<button class="filter' + (i === 0 ? ' active' : '') + '" data-r="' + esc(r) + '">' + esc(r) + '</button>';
+  }).join('');
+  filterBox.addEventListener('click', function (e) {
+    var b = e.target.closest('.filter');
+    if (!b) return;
+    filterBox.querySelectorAll('.filter').forEach(function (x) { x.classList.remove('active'); });
+    b.classList.add('active');
+    var r = b.dataset.r;
+    grid.querySelectorAll('.trip').forEach(function (c) {
+      c.style.display = (r === 'All' || c.dataset.region === r) ? '' : 'none';
+    });
+  });
+
+  // ---- cards ----
+  grid.innerHTML = trips.map(function (t) {
+    return '<article class="trip reveal" data-region="' + esc(t.region) + '">' +
+      '<a class="trip-cover" href="#' + t.id + '" aria-label="Read ' + esc(t.title) + '">' +
+        media(t, t.photos[0], t.places[0].name) +
+        '<span class="trip-when">' + esc(t.when) + '</span>' +
+        '<span class="trip-region">' + esc(t.region) + '</span>' +
+      '</a>' +
+      '<div class="trip-body">' +
+        '<h3>' + esc(t.title) + '</h3>' +
+        '<p>' + esc(t.excerpt) + '</p>' +
+        '<div class="trip-meta">' +
+          '<small><i class="fa fa-map-marker"></i> ' + t.places.length + ' places</small>' +
+          '<a class="read-more" href="#' + t.id + '">Read more <i class="fa fa-arrow-right"></i></a>' +
+        '</div>' +
+      '</div>' +
+    '</article>';
+  }).join('');
+  if (window.observeReveal) window.observeReveal(grid);
+
+  // ---- story view ----
+  function renderStory(t) {
+    var idx = trips.indexOf(t);
+    var prev = trips[idx - 1], next = trips[idx + 1];
+
+    // Build gallery: real photos after the cover, or one placeholder per place.
+    var galleryItems = t.photos.length > 1
+      ? t.photos.slice(1).map(function (p) { return { photo: p, label: p.caption || '' }; })
+      : (t.photos.length ? [] : t.places.map(function (p) { return { photo: null, label: p.name }; }));
+    function galleryHtml(items) {
+      var cls = items.length === 1 ? ' one' : (items.length === 2 ? ' two' : '');
+      return '<div class="gallery' + cls + '">' + items.map(function (g, i) {
+        var wide = items.length > 2 && i === 0 && items.length % 3 !== 0;
+        var cap = g.photo && g.photo.caption ? '<figcaption>' + esc(g.photo.caption) + '</figcaption>' : '';
+        return '<figure class="' + (wide ? 'wide' : '') + (g.photo ? ' zoomable' : '') + '"' +
+          (g.photo ? ' data-src="' + esc(g.photo.src) + '" data-cap="' + esc(g.photo.caption || '') + '"' : '') + '>' +
+          media(t, g.photo, g.label) + cap + '</figure>';
+      }).join('') + '</div>';
+    }
+    var hasInline = t.story.some(function (s) { return s && s.photos; });
+    var gallery = (!hasInline && galleryItems.length) ? galleryHtml(galleryItems) : '';
+
+    var paras = t.story.map(function (s) {
+      if (typeof s === 'string') return '<p>' + esc(s) + '</p>';
+      if (s.video) return '<figure class="story-video"><video controls playsinline preload="metadata"' +
+        (s.poster ? ' poster="' + esc(s.poster) + '"' : '') + '><source src="' + esc(s.video) + '" type="video/mp4"></video>' +
+        (s.caption ? '<figcaption>' + esc(s.caption) + '</figcaption>' : '') + '</figure>';
+      if (s.photos) return galleryHtml(s.photos.map(function (p) { return { photo: p, label: p.caption || '' }; }));
+      return '<h2>' + (s.sub ? '<small>' + esc(s.sub) + '</small>' : '') + esc(s.h) + '</h2>';
+    });
+    // Put the gallery after the first paragraph.
+    if (gallery) paras.splice(1, 0, gallery);
+
+    story.innerHTML =
+      '<header class="story-hero">' +
+        media(t, t.photos[0], 'Cover photo').replace(' loading="lazy"', '') +
+        '<div class="story-back"><div class="wrap"><a href="#trips"><i class="fa fa-arrow-left"></i> All trips</a></div></div>' +
+        '<div class="wrap"><span class="when">' + esc(t.when) + ' · ' + esc(t.region) + '</span><h1>' + esc(t.title) + '</h1></div>' +
+      '</header>' +
+      '<div class="wrap"><div class="story-layout">' +
+        '<div class="story-text">' +
+          (t.photos.length ? '' : '<div class="draft-note"><i class="fa fa-pencil"></i><span>Draft story with placeholder photos. Edit the text and add photos in <code>js/travel-data.js</code>.</span></div>') +
+          paras.join('') +
+          '<nav class="story-nav">' +
+            (prev ? '<a href="#' + prev.id + '"><small>&larr; Newer trip</small><b>' + esc(prev.title) + '</b></a>' : '<span></span>') +
+            (next ? '<a class="next" href="#' + next.id + '"><small>Older trip &rarr;</small><b>' + esc(next.title) + '</b></a>' : '') +
+          '</nav>' +
+        '</div>' +
+        '<aside class="story-aside"><div class="card places">' +
+          '<h3>Places on this trip</h3><ol>' +
+          t.places.map(function (p) {
+            return '<li><a href="' + mapsLink(p.name) + '" target="_blank" rel="noopener">' + esc(p.name) + '</a><span>' + esc(p.note || '') + '</span></li>';
+          }).join('') +
+          '</ol></div></aside>' +
+      '</div></div>';
+  }
+
+  function route() {
+    var id = location.hash.slice(1);
+    var trip = trips.filter(function (t) { return t.id === id; })[0];
+    if (trip) {
+      renderStory(trip);
+      document.body.classList.add('reading');
+      document.title = trip.title + ' | Shaibal Saha';
+      window.scrollTo(0, 0);
+    } else {
+      var wasReading = document.body.classList.contains('reading');
+      document.body.classList.remove('reading');
+      document.title = 'Beyond the Lab | Shaibal Saha';
+      if (wasReading && id) {
+        var target = document.getElementById(id);
+        if (target) setTimeout(function () { target.scrollIntoView(); }, 0);
+      }
+    }
+  }
+  // ---- lightbox: click a story photo to see it large ----
+  var box = document.createElement('div');
+  box.className = 'lightbox';
+  box.innerHTML = '<button type="button" aria-label="Close"><i class="fa fa-times"></i></button><img alt=""><p></p>';
+  document.body.appendChild(box);
+  function closeBox() { box.classList.remove('open'); }
+  box.addEventListener('click', closeBox);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeBox(); });
+  story.addEventListener('click', function (e) {
+    var fig = e.target.closest('figure.zoomable');
+    if (!fig) return;
+    box.querySelector('img').src = fig.dataset.src;
+    box.querySelector('img').alt = fig.dataset.cap;
+    box.querySelector('p').textContent = fig.dataset.cap;
+    box.classList.add('open');
+  });
+
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>
+<script>
+(function () {
+  var books = window.BOOKS || [];
+  var shelf = document.getElementById('shelf'), filt = document.getElementById('book-filters');
+  if (!shelf) return;
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  var genres = ['All'];
+  books.forEach(function (b) { if (genres.indexOf(b.genre) < 0) genres.push(b.genre); });
+  filt.innerHTML = genres.map(function (g, i) { return '<button class="filter' + (i ? '' : ' active') + '" data-g="' + esc(g) + '">' + esc(g) + '</button>'; }).join('');
+  filt.addEventListener('click', function (e) {
+    var b = e.target.closest('.filter'); if (!b) return;
+    filt.querySelectorAll('.filter').forEach(function (x) { x.classList.remove('active'); }); b.classList.add('active');
+    shelf.querySelectorAll('.shelf-book').forEach(function (el) { el.style.display = (b.dataset.g === 'All' || el.dataset.g === b.dataset.g) ? '' : 'none'; });
+  });
+  shelf.innerHTML = books.map(function (b) {
+    var c = b.colors || ['#1f6f8b', '#e07a3f'];
+    var cover = b.cover
+      ? '<img src="' + esc(b.cover) + '" alt="Cover of ' + esc(b.title) + '" loading="lazy">'
+      : '<div class="shelf-art" style="--b1:' + c[0] + ';--b2:' + c[1] + '"><b>' + esc(b.title) + '</b><span>' + esc(b.author) + '</span></div>';
+    return '<article class="shelf-book reveal" data-g="' + esc(b.genre) + '"><div class="shelf-cover">' + cover + '</div>' +
+      '<div class="shelf-meta"><span class="chip">' + esc(b.genre) + '</span><h3>' + esc(b.title) + '</h3><div class="by">' + esc(b.author) + '</div><p>' + esc(b.note) + '</p></div></article>';
+  }).join('');
+  if (window.observeReveal) window.observeReveal(shelf);
+})();
+</script>
+</body>
+</html>
