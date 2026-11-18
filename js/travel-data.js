@@ -45,7 +45,7 @@ window.TRIPS = [
       "It started at Oakland University. Walking across campus that first October, with the leaves just starting to turn, everything was new: the people, the food, the weather, and the quiet.",
       { photos: [
         { src: "images/travel/michigan/oakland-university.jpg", caption: "Oakland University in my first fall" },
-        { src: "images/travel/michigan/meadow-brook-hall.jpg", caption: "Meadow Brook Hall on campus" }
+        { src: "images/travel/michigan/cranbrook.jpg", caption: "Cranbrook, Bloomfield Hills" }
       ] },
       { h: "My first winter", sub: "Winter 2022 to 2023" },
       "Then came my first real winter. I'll never forget seeing snow fall for the first time, or building a snowman like a little kid. On New Year's Eve I went to downtown Detroit, where the giant Christmas tree and the lights between the skyscrapers made the cold feel magical.",
