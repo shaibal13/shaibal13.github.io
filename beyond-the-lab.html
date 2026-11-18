@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/site.css?v=20261118s">
+  <link rel="stylesheet" href="css/site.css?v=20261118t">
 </head>
 <body>
 
@@ -99,9 +99,9 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=20261118s"></script>
-<script src="js/travel-data.js?v=20261118s"></script>
-<script src="js/books-data.js?v=20261118s"></script>
+<script src="js/site.js?v=20261118t"></script>
+<script src="js/travel-data.js?v=20261118t"></script>
+<script src="js/books-data.js?v=20261118t"></script>
 <script>
 (function () {
   var trips = window.TRIPS || [];
@@ -118,9 +118,12 @@
     return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(name);
   }
   // Real photo if given, otherwise a coloured placeholder labelled with the place.
-  function media(trip, photo, label) {
+  // small = use the lightweight "-sm" thumbnail (falls back to full size if missing)
+  function media(trip, photo, label, small) {
     if (photo && photo.src) {
-      return '<img src="' + esc(photo.src) + '" alt="' + esc(photo.caption || label) + '" loading="lazy">';
+      var full = esc(photo.src), src = small ? full.replace(/\.jpg$/i, '-sm.jpg') : full;
+      return '<img src="' + src + '" alt="' + esc(photo.caption || label) + '" loading="lazy" decoding="async"' +
+        (small ? ' onerror="this.onerror=null;this.src=\'' + full + '\'"' : '') + '>';
     }
     return '<div class="ph" style="--g1:' + trip.colors[0] + ';--g2:' + trip.colors[1] + '"><div>' +
       '<i class="fa fa-camera"></i><b>' + esc(label) + '</b><small>Photo coming soon</small></div></div>';
@@ -149,7 +152,7 @@
   grid.innerHTML = trips.map(function (t) {
     return '<article class="trip reveal" data-region="' + esc(t.region) + '">' +
       '<a class="trip-cover" href="#' + t.id + '" aria-label="Read ' + esc(t.title) + '">' +
-        media(t, t.photos[0], t.places[0].name) +
+        media(t, t.photos[0], t.places[0].name, true) +
         '<span class="trip-when">' + esc(t.when) + '</span>' +
         '<span class="trip-region">' + esc(t.region) + '</span>' +
       '</a>' +
@@ -181,7 +184,7 @@
         var cap = g.photo && g.photo.caption ? '<figcaption>' + esc(g.photo.caption) + '</figcaption>' : '';
         return '<figure class="' + (wide ? 'wide' : '') + (g.photo ? ' zoomable' : '') + '"' +
           (g.photo ? ' data-src="' + esc(g.photo.src) + '" data-cap="' + esc(g.photo.caption || '') + '"' : '') + '>' +
-          media(t, g.photo, g.label) + cap + '</figure>';
+          media(t, g.photo, g.label, true) + cap + '</figure>';
       }).join('') + '</div>';
     }
     var hasInline = t.story.some(function (s) { return s && s.photos; });
@@ -200,7 +203,7 @@
 
     story.innerHTML =
       '<header class="story-hero">' +
-        media(t, t.photos[0], 'Cover photo').replace(' loading="lazy"', '') +
+        media(t, t.photos[0], 'Cover photo').replace(' loading="lazy"', ' fetchpriority="high"') +
         '<div class="story-back"><div class="wrap"><a href="#trips"><i class="fa fa-arrow-left"></i> All trips</a></div></div>' +
         '<div class="wrap"><span class="when">' + esc(t.when) + ' · ' + esc(t.region) + '</span><h1>' + esc(t.title) + '</h1></div>' +
       '</header>' +
